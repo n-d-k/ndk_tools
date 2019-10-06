@@ -1,2 +1,2 @@
 # ndk_tools
-Auto Built Script for Open Sourced Project
+Auto Built Script for Open Source Projects
