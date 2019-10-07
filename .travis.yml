@@ -10,7 +10,7 @@ deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
   name: Clover_v2.5k_$R_TAG
-  body: $LAST_COMMIT_MESSAGE
+  body: $COMMIT_MESSAGE
   file_glob: true
   file:
     - Build/CloverPackage/sym/Clover_v2.5k_r*
