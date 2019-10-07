@@ -3,18 +3,20 @@
 #  
 #
 #  Created by n-d-k on 10/6/19.
-#  
+# 
 #
 CLOVER_GIT_URL="https://github.com/n-d-k/CloverBootloader.git"
 GIT_DIR="Build"
 mkdir $GIT_DIR
 git clone $CLOVER_GIT_URL $GIT_DIR
+
 CURRENT_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
 echo "Our tag: $CURRENT_TAG"
 cd $GIT_DIR
 
 CLOVER_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
 echo "Clover tag: $CLOVER_TAG"
+
 
 LAST_COMMIT_MESSAGE=$(git log --pretty='format:%Creset%s' --no-merges -1)
 echo "Last Clover commit message: $LAST_COMMIT_MESSAGE"
