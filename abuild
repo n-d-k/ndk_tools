@@ -5,7 +5,7 @@
 #  Created by n-d-k on 10/6/19.
 #  Sample of Clover Auto Daily Build Using Travis Ci
 #
-CLOVER_GIT_URL="https://github.com/n-d-k/CloverBootloader.git"
+CLOVER_GIT_URL="https://github.com/CloverHackyColor/CloverBootloader.git"
 GIT_DIR="Build"
 mkdir $GIT_DIR
 git clone $CLOVER_GIT_URL $GIT_DIR
