@@ -18,3 +18,5 @@ deploy:
     - Build/CloverPackage/sym/Clover_v2.5k_r*
     - Build/CloverPackage/sym/*.lzma
   skip_cleanup: true
+  on:
+    branch: master
