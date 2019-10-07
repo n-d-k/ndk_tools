@@ -10,25 +10,21 @@ GIT_DIR="Build"
 mkdir $GIT_DIR
 git clone $CLOVER_GIT_URL $GIT_DIR
 
-CURRENT_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
-echo "Our tag: $CURRENT_TAG"
+R_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+echo "Our tag: $R_TAG"
 cd $GIT_DIR
 
 CLOVER_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
 echo "Clover tag: $CLOVER_TAG"
 
-
 LAST_COMMIT_MESSAGE=$(git log --pretty='format:%Creset%s' --no-merges -1)
 echo "Last Clover commit message: $LAST_COMMIT_MESSAGE"
 
-COMMIT_MESSAGE=$LAST_COMMIT_MESSAGE
-
-if [[ "$CLOVER_TAG" == "$CURRENT_TAG" ]]; then
+if [[ "$CLOVER_TAG" == "$R_TAG" ]]; then
     echo "Build is up to date!"
     exit 0
 else
-    R_TAG=$CLOVER_TAG
+    export TRAVIS_TAG=$CLOVER_TAG
+    export TRAVIS_COMMIT_MESSAGE=$LAST_COMMIT_MESSAGE
     ./buildme XCODE8 travis
 fi
-    
-
