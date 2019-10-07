@@ -9,8 +9,8 @@ script:
 before_deploy:
   - git config --local user.name $GIT_USER
   - git config --local user.email $GIT_EMAIL
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(git -C /Users/travis/build/n-d-k/Build describe --tags $(git -C /Users/travis/build/n-d-k/Build rev-list --tags --max-count=1))}
-  - export TRAVIS_COMMIT_MESSAGE=${TRAVIS_COMMIT_MESSAGE:-$(git -C /Users/travis/build/n-d-k/Build log --pretty='format:%Creset%s' --no-merges -1)}
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(git -C /Users/travis/build/n-d-k/ndk_tools/Build describe --tags $(git -C /Users/travis/build/n-d-k/ndk_tools/Build rev-list --tags --max-count=1))}
+  - export TRAVIS_COMMIT_MESSAGE=${TRAVIS_COMMIT_MESSAGE:-$(git -C /Users/travis/build/n-d-k/ndk_tools/Build log --pretty='format:%Creset%s' --no-merges -1)}
   - git tag $TRAVIS_TAG
 deploy:
   provider: releases
