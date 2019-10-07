@@ -5,7 +5,7 @@
 #  Created by n-d-k on 10/6/19.
 #  
 #
-CLOVER_GIT_URL="https://github.com/CloverHackyColor/CloverBootloader.git"
+CLOVER_GIT_URL="https://github.com/n-d-k/CloverBootloader.git"
 GIT_DIR="Clover"
 mkdir $GIT_DIR
 git clone $CLOVER_GIT_URL $GIT_DIR
