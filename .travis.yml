@@ -9,12 +9,10 @@ script:
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
-  name: Clover_v2.5k_$TRAVIS_TAG
-  body: $TRAVIS_COMMIT_MESSAGE
+  name: Clover_v2.5k_$R_TAG
+  body: $LAST_COMMIT_MESSAGE
   file_glob: true
   file:
     - Build/CloverPackage/sym/Clover_v2.5k_r*
     - Build/CloverPackage/sym/*.lzma
   skip_cleanup: true
-  on:
-    Branch: master
