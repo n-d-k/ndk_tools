@@ -9,7 +9,7 @@ script:
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
-  name: Clover_v2.5k_$TRAVIS_TAG
+  name: Clover_v2.5k_r$TRAVIS_TAG
   body: $TRAVIS_COMMIT_MESSAGE
   file_glob: true
   file:
