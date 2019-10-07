@@ -24,7 +24,5 @@ if [[ "$CLOVER_TAG" == "$R_TAG" ]]; then
     echo "Build is up to date!"
     exit 0
 else
-    export TRAVIS_TAG=$CLOVER_TAG
-    export TRAVIS_COMMIT_MESSAGE=$LAST_COMMIT_MESSAGE
     ./buildme XCODE8 travis
 fi
