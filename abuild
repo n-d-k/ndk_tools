@@ -20,7 +20,7 @@ echo "Clover tag: $CLOVER_TAG Commit: $CLOVER_TAG_COMMIT"
 
 LAST_COMMIT=$(git log -n 1 --pretty=format:'%H')
 LAST_COMMIT_MESSAGE=$(git log --pretty='format:%Creset%s' --no-merges -1)
-echo "Last Clover commit message: $LAST_COMMIT_MESSAGE Hash: $LAST_COMMIT"
+echo "Last Clover commit message: $LAST_COMMIT_MESSAGE Hash: ${LAST_COMMIT:0:7}"
 
 [[ "$CLOVER_TAG_COMMIT" == "$LAST_COMMIT" ]] && PRE_RELEASE=false || PRE_RELEASE=true
 
