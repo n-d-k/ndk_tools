@@ -11,6 +11,14 @@ mkdir $GIT_DIR
 git clone $CLOVER_GIT_URL $GIT_DIR
 
 R_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+if [[ $R_TAG == *"-"* ]]; then
+    IS_PR_TAG=true
+    SHORT_COMMIT=${R_TAG:-7}
+    echo "Short Hash: $SHORT_COMMIT"
+else
+    IS_PR_TAG=false
+fi
+    
 echo "Our tag: $R_TAG"
 cd $GIT_DIR
 
@@ -22,7 +30,7 @@ LAST_COMMIT=$(git log -n 1 --pretty=format:'%H')
 LAST_COMMIT_MESSAGE=$(git log --pretty='format:%Creset%s' --no-merges -1)
 echo "Last Clover commit message: $LAST_COMMIT_MESSAGE Hash: ${LAST_COMMIT:0:7}"
 
-[[ "$CLOVER_TAG_COMMIT" == "$LAST_COMMIT" ]] && PRE_RELEASE=false || PRE_RELEASE=true
+[[ "$CLOVER_TAG_COMMIT" == "$LAST_COMMIT" ]] && PRE_RELEASE=false || PRE_RELEASE=true; CLOVER_TAG="$CLOVER_TAG_${LAST_COMMIT:0:7}"
 
 echo "Pre-release : $PRE_RELEASE"
 
@@ -30,5 +38,7 @@ if [[ "$CLOVER_TAG" == "$R_TAG" ]]; then
     echo "Build is up to date!"
     exit 0
 else
-    ./buildme XCODE8 travis
+    echo "Need new build!"
+    exit 0
+    #./buildme XCODE8 travis
 fi
