@@ -40,6 +40,5 @@ if [[ "$CLOVER_TAG" == "$R_TAG" ]]; then
     exit 0
 else
     echo "Need new build!"
-    exit 0
-    #./buildme XCODE8 travis
+    ./buildme XCODE8 travis
 fi
