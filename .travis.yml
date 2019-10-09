@@ -9,7 +9,6 @@ script:
 before_deploy:
   - git config --local user.name $GIT_USER
   - git config --local user.email $GIT_EMAIL
-  if [[ "$(git -C $TRAVIS_BUILD_DIR/Build rev-list -n 1 $(git -C $TRAVIS_BUILD_DIR/Build describe --tags $(git -C $TRAVIS_BUILD_DIR/Build rev-list --tags --max-count=1)))" == "$(git -C $TRAVIS_BUILD_DIR/Build log -n 1 --pretty=format:'%H')" ]]; then export PRE_RELEASE=false || export PRE_RELEASE=true fi
   - export TRAVIS_TAG="${TRAVIS_TAG:-$(git -C $TRAVIS_BUILD_DIR/Build describe --tags $(git -C $TRAVIS_BUILD_DIR/Build rev-list --tags --max-count=1))}_${git -C $TRAVIS_BUILD_DIR/Build log -n 1 --pretty=format:'%H':0:7}"
   - export LAST_COMMIT_MESSAGE=$(git -C $TRAVIS_BUILD_DIR/Build log --pretty='format:%Creset%s' --no-merges -1)
   - git tag $TRAVIS_TAG || exit 0
@@ -18,7 +17,6 @@ deploy:
   api_key: $GITHUB_TOKEN
   name: Clover_v2.5k_r$TRAVIS_TAG
   body: $LAST_COMMIT_MESSAGE
-  prerelease: $PRE_RELEASE
   file_glob: true
   file:
     - Build/CloverPackage/sym/Clover_v2.5k_r*
