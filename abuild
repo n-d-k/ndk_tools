@@ -30,15 +30,17 @@ LAST_COMMIT=$(git log -n 1 --pretty=format:'%H')
 LAST_COMMIT_MESSAGE=$(git log --pretty='format:%Creset%s' --no-merges -1)
 echo "Last Clover commit message: $LAST_COMMIT_MESSAGE Hash: ${LAST_COMMIT:0:7}"
 
-[[ "$CLOVER_TAG_COMMIT" == "$LAST_COMMIT" ]] && PRE_RELEASE=false || PRE_RELEASE=true; CLOVER_TAG="${CLOVER_TAG}_${LAST_COMMIT:0:7}"
-#[[ "$(git rev-list -n 1 $(git describe --tags $(git rev-list --tags --max-count=1)))" == "$(git log -n 1 --pretty=format:'%H')" ]] && PRE_RELEASE=false || PRE_RELEASE=true; CLOVER_TAG="${CLOVER_TAG}_${LAST_COMMIT:0:7}"
+if [[ "$CLOVER_TAG_COMMIT" == "$LAST_COMMIT" ]]; then
+    PRE_RELEASE=false
+else
+    PRE_RELEASE=true
+    CLOVER_TAG="${CLOVER_TAG}_${LAST_COMMIT:0:7}"
+fi
 
 NDK_PRE_RELEASE=${NDK_PRE_RELEASE:+$PRE_RELEASE}
+NDK_RELEASE_TAG=${NDK_RELEASE_TAG:+$CLOVER_TAG}
 
-echo "$TRAVIS_TAG"
-export TRAVIS_TAG=${TRAVIS_TAG:-$CLOVER_TAG}
-
-echo "Pre-release: $NDK_PRE_RELEASE Clover_tag: $CLOVER_TAG"
+echo "Pre-release: $NDK_PRE_RELEASE Clover_tag: $NDK_RELEASE_TAG"
 
 if [[ "$CLOVER_TAG" == "$R_TAG" ]]; then
     echo "Build is up to date!"
