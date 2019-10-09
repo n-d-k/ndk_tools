@@ -20,6 +20,8 @@ else
 fi
     
 echo "Our tag: $R_TAG"
+echo "$NDK_PRE_RELEASE"
+echo "$GIT_USER"
 cd $GIT_DIR
 
 CLOVER_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))

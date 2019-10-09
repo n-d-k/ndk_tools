@@ -3,6 +3,9 @@ language: cpp
 os: osx
 osx_image: xcode11
 
+env:
+  - NDK_PRE_RELEASE=false
+
 script:
   - "./abuild"
   
@@ -17,6 +20,7 @@ deploy:
   api_key: $GITHUB_TOKEN
   name: Clover_v2.5k_r$TRAVIS_TAG
   body: $LAST_COMMIT_MESSAGE
+  prerelease: $NDK_PRE_RELEASE
   file_glob: true
   file:
     - Build/CloverPackage/sym/Clover_v2.5k_r*
