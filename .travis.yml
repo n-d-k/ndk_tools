@@ -14,7 +14,7 @@ before_deploy:
   - export LAST_GIT_COMMIT=$(git log -n 1 --pretty=format:'%H')
   - export LAST_GIT_COMMIT_MESSAGE=$(git -C $TRAVIS_BUILD_DIR/Build log --pretty='format:%Creset%s' --no-merges -1)
   - export PRERELEASE=false
-  - git tag $TRAVIS_TAG || export PRERELEASE=true && git tag ${TRAVIS_TAG}_${LAST_GIT_COMMIT:0:7}
+  - git tag $TRAVIS_TAG || git tag ${TRAVIS_TAG}_${LAST_GIT_COMMIT:0:7}
   
   deploy:
   provider: releases
