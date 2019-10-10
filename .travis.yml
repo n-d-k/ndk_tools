@@ -13,7 +13,8 @@ before_deploy:
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(git -C $TRAVIS_BUILD_DIR/Build describe --tags $(git -C $TRAVIS_BUILD_DIR/Build rev-list --tags --max-count=1))}
   - export LAST_GIT_COMMIT=$(git log -n 1 --pretty=format:'%H')
   - export LAST_GIT_COMMIT_MESSAGE=$(git -C $TRAVIS_BUILD_DIR/Build log --pretty='format:%Creset%s' --no-merges -1)
-  - export PRERELEASE=false && git tag $TRAVIS_TAG || export PRERELEASE=true && git tag "${TRAVIS_TAG}_${LAST_GIT_COMMIT:0:7}" || exit 0
+  - export PRERELEASE=false
+  - git tag $TRAVIS_TAG || export PRERELEASE=true && git tag "${TRAVIS_TAG}_${LAST_GIT_COMMIT:0:7}"
   
   deploy:
   provider: releases
