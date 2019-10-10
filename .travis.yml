@@ -18,7 +18,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
-  name: Clover_v2.5k_r$TRAVIS_TAG \n Auto build by Travis Ci.
+  name: Clover_v2.5k_r$TRAVIS_TAG
   body: $LAST_COMMIT_MESSAGE
   prerelease: $PRE_RELEASE
   file_glob: true
