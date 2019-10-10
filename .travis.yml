@@ -21,7 +21,6 @@ before_deploy:
   api_key: $GITHUB_TOKEN
   name: Clover_v2.5k_r$TRAVIS_TAG
   body: $LAST_GIT_COMMIT_MESSAGE
-  prerelease: false
   file_glob: true
   file:
     - Build/CloverPackage/sym/Clover_v2.5k_r*
