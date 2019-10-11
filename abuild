@@ -11,7 +11,7 @@ mkdir $GIT_DIR
 git clone $CLOVER_GIT_URL $GIT_DIR
 R_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
 
-if [[ $R_TAG == *"-"* ]]; then
+if [[ "$R_TAG" == *"-"* ]]; then
     IS_PR_TAG=true
     SHORT_COMMIT=${R_TAG:-7}
     RR_TAG=${R_TAG:0:4}
