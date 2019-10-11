@@ -1,7 +1,7 @@
 language: cpp
 
 os: osx
-osx_image: xcode11
+osx_image: xcode11.2
 
 
 script:
@@ -17,6 +17,8 @@ before_deploy:
   
 deploy:
   provider: releases
+  edge: true
+  allow_failure: true
   api_key: $GITHUB_TOKEN
   name: Clover_v2.5k_r$TRAVIS_TAG
   body: $LAST_COMMIT_MESSAGE
@@ -25,6 +27,5 @@ deploy:
   file:
     - Build/CloverPackage/sym/Clover_v2.5k_r*
     - Build/CloverPackage/sym/*.lzma
-  skip_cleanup: true
   on:
     Branch: master
