@@ -11,9 +11,8 @@ before_deploy:
   - git config --local user.name $GIT_USER
   - git config --local user.email $GIT_EMAIL
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(cat "$TRAVIS_BUILD_DIR/Build/TAG")}
-  - export LAST_GIT_COMMIT=$(git -C $TRAVIS_BUILD_DIR/Build log -n 1 --pretty=format:'%H')
+  - export LAST_COMMIT_MESSAGE=$(cat "$TRAVIS_BUILD_DIR/Build/MESSAGE")
   - export PRE_RELEASE=$(cat "$TRAVIS_BUILD_DIR/Build/PRERELEASE")
-  - export LAST_COMMIT_MESSAGE=$(git -C $TRAVIS_BUILD_DIR/Build log --pretty='format:%Creset%s' --no-merges -1)
   - git tag $TRAVIS_TAG || exit 0
   
 deploy:

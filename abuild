@@ -34,6 +34,7 @@ else
     # Make sure we compile against the right commit and skipping the release one
     if [[ "$RR_TAG" != "$LAST_GIT_TAG" ]]; then
         git checkout $GIT_TAG_COMMIT
+        LAST_GIT_COMMIT_MESSAGE=$(git log -n 1 --pretty=format:%s ${GIT_TAG_COMMIT:0:7})
     else
         PRE_RELEASE=true
         LAST_GIT_TAG="${LAST_GIT_TAG}_${LAST_GIT_COMMIT:0:7}"
@@ -41,6 +42,7 @@ else
 fi
 
 echo $LAST_GIT_TAG >> "TAG"
+echo $LAST_GIT_COMMIT_MESSAGE >> "MESSAGE"
 echo $PRE_RELEASE >> "PRERELEASE"
 echo "Our current tag: $R_TAG"
 echo "Clover current tag: $LAST_GIT_TAG"
@@ -51,5 +53,5 @@ if [[ "$LAST_GIT_TAG" == "$R_TAG" ]]; then
     exit 0
 else
     echo "Need new build!"
-    #./buildme XCODE8 travis
+    ./buildme XCODE8 travis
 fi
