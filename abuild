@@ -13,7 +13,7 @@ R_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
 
 if [[ "$R_TAG" == *"_"* ]]; then
     IS_PR_TAG=true
-    SHORT_COMMIT=${R_TAG:-7}
+    SHORT_COMMIT=${R_TAG: -7}
     RR_TAG=${R_TAG:0:4}
     echo "Our tag: $RR_TAG Short Hash: $SHORT_COMMIT"
 else
