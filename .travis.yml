@@ -15,7 +15,7 @@ before_deploy:
   - export PRE_RELEASE=$(cat "$TRAVIS_BUILD_DIR/Build/PRERELEASE")
   - git remote rm origin
   - git remote add origin https://n-d-k:$GITHUB_TOKEN@github.com/n-d-k/ndk_tools.git
-  - git commit --allow-empty -m "${LAST_COMMIT_MESSAGE}[skip ci]"
+  - git commit --allow-empty -m $LAST_COMMIT_MESSAGE
   - git push origin master
   - git tag $TRAVIS_TAG || exit 0
   
