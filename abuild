@@ -51,5 +51,5 @@ if [[ "$LAST_GIT_TAG" == "$R_TAG" ]]; then
     exit 0
 else
     echo "Need new build!"
-    #./buildme XCODE8 travis
+    ./buildme XCODE8 travis
 fi

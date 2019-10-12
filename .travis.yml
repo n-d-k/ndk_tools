@@ -13,10 +13,6 @@ before_deploy:
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(cat "$TRAVIS_BUILD_DIR/Build/TAG")}
   - export LAST_COMMIT_MESSAGE=$(cat "$TRAVIS_BUILD_DIR/Build/MESSAGE")
   - export PRE_RELEASE=$(cat "$TRAVIS_BUILD_DIR/Build/PRERELEASE")
-  - git remote set-url origin https://n-d-k:$GITHUB_TOKEN@github.com/n-d-k/ndk_tools.git
-  - git fetch
-  - git commit --allow-empty -m "Auto Travis"
-  - git push origin master
   - git tag $TRAVIS_TAG || exit 0
   
 deploy:
