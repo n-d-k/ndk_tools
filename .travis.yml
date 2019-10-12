@@ -13,7 +13,7 @@ before_deploy:
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(cat "$TRAVIS_BUILD_DIR/Build/TAG")}
   - export LAST_COMMIT_MESSAGE=$(cat "$TRAVIS_BUILD_DIR/Build/MESSAGE")
   - export PRE_RELEASE=$(cat "$TRAVIS_BUILD_DIR/Build/PRERELEASE")
-  - git commit --allow-empty -m $LAST_COMMIT_MESSAGE[skip ci]
+  - git commit --allow-empty -m "${LAST_COMMIT_MESSAGE}[skip ci]"
   - git push origin master
   - git tag $TRAVIS_TAG || exit 0
   
