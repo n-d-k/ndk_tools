@@ -8,8 +8,9 @@
 CLOVER_GIT_URL="https://github.com/CloverHackyColor/CloverBootloader.git"
 GIT_DIR="Build"
 mkdir $GIT_DIR
-git clone $CLOVER_GIT_URL $GIT_DIR
+git fetch
 R_TAG=$(git describe --tags --abbrev=0)
+git clone $CLOVER_GIT_URL $GIT_DIR
 
 if [[ "$R_TAG" == *"_"* ]]; then
     SHORT_COMMIT=${R_TAG: -7}
