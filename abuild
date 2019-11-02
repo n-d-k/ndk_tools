@@ -9,7 +9,7 @@ CLOVER_GIT_URL="https://github.com/CloverHackyColor/CloverBootloader.git"
 GIT_DIR="Build"
 mkdir $GIT_DIR
 git clone $CLOVER_GIT_URL $GIT_DIR
-R_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+R_TAG=$(git describe --tags --abbrev=0)
 
 if [[ "$R_TAG" == *"_"* ]]; then
     SHORT_COMMIT=${R_TAG: -7}
@@ -21,7 +21,7 @@ fi
 
 #=================== Clover repo section ==================
 cd $GIT_DIR
-LAST_GIT_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+LAST_GIT_TAG=$(git describe --tags --abbrev=0)
 GIT_TAG_COMMIT=$(git rev-list -n 1 $LAST_GIT_TAG)
 LAST_GIT_COMMIT=$(git log -n 1 --pretty=format:'%H')
 LAST_GIT_COMMIT_MESSAGE=$(git log --pretty='format:%Creset%s' --no-merges -1)
