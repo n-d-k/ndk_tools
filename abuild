@@ -9,7 +9,7 @@ CLOVER_GIT_URL="https://github.com/CloverHackyColor/CloverBootloader.git"
 GIT_DIR="Build"
 mkdir $GIT_DIR
 git fetch --tags -f
-R_TAG=$(git describe --tags --abbrev=0)
+R_TAG=$(echo $(git for-each-ref refs/tags --sort=-taggerdate --format='%(refname)' --count=1) | cut -d'/' -f 3)
 git clone $CLOVER_GIT_URL $GIT_DIR
 
 if [[ "$R_TAG" == *"_"* ]]; then
