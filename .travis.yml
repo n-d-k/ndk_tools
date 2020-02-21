@@ -1,7 +1,7 @@
 language: cpp
 
 os: osx
-osx_image: xcode11.2
+osx_image: xcode11.3
 
 
 script:
@@ -17,7 +17,6 @@ before_deploy:
   
 deploy:
   provider: releases
-  edge: false
   allow_failure: true
   api_key: $GITHUB_TOKEN
   name: Clover_v2.5k_r$TRAVIS_TAG
